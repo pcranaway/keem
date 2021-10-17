@@ -34,6 +34,7 @@ int main(void) {
 
 	int error;
 	if ((error = server.start(8080)) == 0) {
+		// stops server when any key + enter is pressed
 		getchar();
 		server.stop();
 	} else {
