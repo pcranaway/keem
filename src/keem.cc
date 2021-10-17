@@ -26,16 +26,18 @@ int main(void) {
 		std::string path = std::string(task->get_req()->get_request_uri());
 
 		std::smatch match;
-		
 		if(!std::regex_match(path, match, kRpcRegex)) {
 			json_response(task->get_resp(), json({{"code", 404}, {"error", "Resource Not Found"}}), 404);
 			return;
 		}
 	});
 
-	if (server.start(8080) == 0) {
+	int error;
+	if ((error = server.start(8080)) == 0) {
 		getchar();
 		server.stop();
+	} else {
+		fprintf(stderr, "error: code %d\n", error);
 	}
 
 	return 0;
