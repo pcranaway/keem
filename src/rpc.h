@@ -1,7 +1,9 @@
 #pragma once
 
-#include <cstdlib>
 #include <string>
+#include <json.hpp>
+
+using json = nlohmann::json;
 
 enum HTTPMethod {
 	POST,
@@ -13,6 +15,14 @@ enum HTTPMethod {
 class RPC {
 
 	public:
-		// RPC(std::string name, protocol::M);
+		std::string name;
+		HTTPMethod method;
+
+	public:
+		RPC(std::string name, HTTPMethod method) :
+			name(name), method(method) {}
+
+	public:
+		json execute(json arguments);
 
 };
