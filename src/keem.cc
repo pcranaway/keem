@@ -28,7 +28,7 @@ int main(void) {
 		std::smatch match;
 		
 		if(!std::regex_match(path, match, kRpcRegex)) {
-			json_response(task->get_resp(), json({{"error", "Resource not found"}}), 404);
+			json_response(task->get_resp(), json({{"code", 404}, {"error", "Resource Not Found"}}), 404);
 			return;
 		}
 	});
